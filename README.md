@@ -8,7 +8,7 @@ You can find the constraints in the file [`Constraints.md`](Constraints.md).
 
 Part 2: Creating and populating the Data Base
 ---------------------------------------------
-The project which sets up a clean database for development and testing can be found [here](link).
+The `Janitor` class uses the information in the `Tables` XML file to generate a clean database and then populate this with test data.
 
 Part 3: An interface using JDBC
 -------------------------------
