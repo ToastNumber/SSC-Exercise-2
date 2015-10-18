@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+	<table name="Student">
+		<attribute>
+			<name>studentID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>studentID PRIMARY KEY</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>titleID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (titleID) REFERENCES Titles (titleID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>foreName</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>foreName NOT NULL</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>familyName</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>familyName NOT NULL</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>dateOfBirth</name>
+			<type>DATE</type>
+			<constraints>
+				<constraint>dateOfBirth NOT NULL</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="Lecturer">
+		<attribute>
+			<name>lecturerID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>PRIMARY KEY (lecturerID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>titleID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (titleID) REFERENCES Titles (titleID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>foreName</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>foreName NOT NULL</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>familyName</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>familyName NOT NULL</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="StudentRegistration">
+		<attribute>
+			<name>studentID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (studentID) REFERENCES Student (studentID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>yearOfStudy</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>yearOfStudy NOT NULL</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>registrationTypeID</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>FOREIGN KEY (registrationID) REFERENCES RegistrationType (registrationTypeID)</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="StudentContact">
+		<attribute>
+			<name>studentID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (studentID) REFERENCES Student (studentID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>eMailAddress</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>eMailAddress NOT NULL</constraint>
+				<constraint>eMailAddress UNIQUE</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>postalAddress</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>postalAddress NOT NULL</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="NextOfKinContact">
+		<attribute>
+			<name>studentID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (studentID) REFERENCES Student (studentID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>name</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>name NOT NULL</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>eMailAddress</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>eMailAddress NOT NULL</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>postalAddress</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>postalAddress NOT NULL</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="LecturerContact">
+		<attribute>
+			<name>lecturerID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (lecturerID) REFERENCES Lecturer (lecturerID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>office</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>office NOT NULL</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>eMailAddress</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>eMailAddress NOT NULL</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="Tutor">
+		<attribute>
+			<name>studentID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (studentID) REFERENCES Student (studentID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>lecturerID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>FOREIGN KEY (lecturerID) REFERENCES Lecturer (lecturerID)</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="Titles">
+		<attribute>
+			<name>titleID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>PRIMARY KEY (titleID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>titleString</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>titleString NOT NULL</constraint>
+				<constraint>titleString UNIQUE</constraint>
+			</constraints>
+		</attribute>
+	</table>
+	
+	<table name="RegistrationType">
+		<attribute>
+			<name>registrationTypeID</name>
+			<type>INTEGER</type>
+			<constraints>
+				<constraint>PRIMARY KEY (registrationTypeID)</constraint>
+			</constraints>
+		</attribute>
+		
+		<attribute>
+			<name>description</name>
+			<type>VARCHAR(255)</type>
+			<constraints>
+				<constraint>description NOT NULL</constraint>
+				<constraint>description UNIQUE</constraint>
+			</constraints>
+		</attribute>
+	</table>
+</database>
+
