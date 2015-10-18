@@ -2,12 +2,10 @@
 <database>
 	<table name="Student">
 		<primarykey>studentID</primarykey>
-		<foreignkeys>
-			<foreignkey>
-				<field>titleID</field>
-				<ref>Titles (titleID)</ref>
-			</foreignkey>
-		</foreignkeys>
+		<foreignkey>
+			<field>titleID</field>
+			<ref>Titles (titleID)</ref>
+		</foreignkey>
 		
 		<attribute>
 			<name>studentID</name>
@@ -22,36 +20,28 @@
 		<attribute>
 			<name>foreName</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 		
 		<attribute>
 			<name>familyName</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 		
 		<attribute>
 			<name>dateOfBirth</name>
 			<type>DATE</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 	</table>
 	
 	<table name="Lecturer">
 		<primarykey>lecturerID</primarykey>
-		<foreignkeys>
-			<foreignkey>
-				<field>titleID</field>
-				<ref>Titles (titleID)</ref>
-			</foreignkey>
-		</foreignkeys>
+		<foreignkey>
+			<field>titleID</field>
+			<ref>Titles (titleID)</ref>
+		</foreignkey>
 	
 		<attribute>
 			<name>lecturerID</name>
@@ -61,53 +51,41 @@
 		<attribute>
 			<name>titleID</name>
 			<type>INTEGER</type>
-			<constraints>
-			</constraints>
 		</attribute>
 		
 		<attribute>
 			<name>foreName</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 		
 		<attribute>
 			<name>familyName</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 	</table>
 	
 	<table name="StudentRegistration">
-		<foreignkeys>
-			<foreignkey>
-				<field>studentID</field>
-				<ref>Student (studentID)</ref>
-			</foreignkey>
-			
-			<foreignkey>
-				<field>registrationTypeID</field>
-				<ref>RegistrationType (registrationTypeID)</ref>
-			</foreignkey>
-		</foreignkeys>
+		<foreignkey>
+			<field>studentID</field>
+			<ref>Student (studentID)</ref>
+		</foreignkey>
+		
+		<foreignkey>
+			<field>registrationTypeID</field>
+			<ref>RegistrationType (registrationTypeID)</ref>
+		</foreignkey>
 	
 		<attribute>
 			<name>studentID</name>
 			<type>INTEGER</type>
-			<constraints>
-			</constraints>
 		</attribute>
 		
 		<attribute>
 			<name>yearOfStudy</name>
 			<type>INTEGER</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 		
 		<attribute>
@@ -117,12 +95,10 @@
 	</table>
 	
 	<table name="StudentContact">
-		<foreignkeys>
-			<foreignkey>
-				<field>studentID</field>
-				<ref>Student (studentID)</ref>
-			</foreignkey>
-		</foreignkeys>
+		<foreignkey>
+			<field>studentID</field>
+			<ref>Student (studentID)</ref>
+		</foreignkey>
 	
 		<attribute>
 			<name>studentID</name>
@@ -132,28 +108,22 @@
 		<attribute>
 			<name>eMailAddress</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-				<constraint>UNIQUE</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
+			<constraint>UNIQUE</constraint>
 		</attribute>
 		
 		<attribute>
 			<name>postalAddress</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 	</table>
 	
 	<table name="NextOfKinContact">
-		<foreignkeys>
-			<foreignkey>
-				<field>studentID</field>
-				<ref>Student (studentID)</ref>
-			</foreignkey>
-		</foreignkeys>
+		<foreignkey>
+			<field>studentID</field>
+			<ref>Student (studentID)</ref>
+		</foreignkey>
 	
 	
 		<attribute>
@@ -164,36 +134,28 @@
 		<attribute>
 			<name>name</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 		
 		<attribute>
 			<name>eMailAddress</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 		
 		<attribute>
 			<name>postalAddress</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 	</table>
 	
 	<table name="LecturerContact">
 		<primarykey>lecturerID</primarykey>
-		<foreignkeys>
-			<foreignkey>
-				<field>lecturerID</field>
-				<ref>Lecturer (lecturerID)</ref>
-			</foreignkey>
-		</foreignkeys>
+		<foreignkey>
+			<field>lecturerID</field>
+			<ref>Lecturer (lecturerID)</ref>
+		</foreignkey>
 	
 		<attribute>
 			<name>lecturerID</name>
@@ -203,32 +165,26 @@
 		<attribute>
 			<name>office</name>
 			<type>INTEGER</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 		
 		<attribute>
 			<name>eMailAddress</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
 		</attribute>
 	</table>
 	
 	<table name="Tutor">
-		<foreignkeys>
-			<foreignkey>
-				<field>studentID</field>
-				<ref>Student (studentID)</ref>
-			</foreignkey>
-			
-			<foreignkey>
-				<field>lecturerID</field>
-				<ref>Lecturer (lecturerID)</ref>
-			</foreignkey>
-		</foreignkeys>
+		<foreignkey>
+			<field>studentID</field>
+			<ref>Student (studentID)</ref>
+		</foreignkey>
+		
+		<foreignkey>
+			<field>lecturerID</field>
+			<ref>Lecturer (lecturerID)</ref>
+		</foreignkey>
 	
 		<attribute>
 			<name>studentID</name>
@@ -252,10 +208,8 @@
 		<attribute>
 			<name>titleString</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-				<constraint>UNIQUE</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
+			<constraint>UNIQUE</constraint>
 		</attribute>
 	</table>
 	
@@ -270,10 +224,8 @@
 		<attribute>
 			<name>description</name>
 			<type>VARCHAR(255)</type>
-			<constraints>
-				<constraint>NOT NULL</constraint>
-				<constraint>UNIQUE</constraint>
-			</constraints>
+			<constraint>NOT NULL</constraint>
+			<constraint>UNIQUE</constraint>
 		</attribute>
 	</table>
 </database>
