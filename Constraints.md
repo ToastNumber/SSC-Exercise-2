@@ -2,6 +2,10 @@ Part 1: Data Definition
 =======================
 Below are the constraints for the tables in the database.
 
+Notes
+-----
+Look into which fields should be `VARCHAR` and which should be `CHAR`. I think constants like titles should be CHAR and then others that can/should be inputted by user should be VARCHAR. (But then again, the user could update the titles table, so maybe just leave everything as VARCHAR).
+
 Student
 -------
 | Field       | Type          | Constraints |
