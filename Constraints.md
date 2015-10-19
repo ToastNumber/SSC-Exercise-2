@@ -27,11 +27,11 @@ Lecturer
 
 StudentRegistration
 -------------------
-| Field               | Type         | Constraints |
-| ------------------- | ------------ | ----------- |
-| studentID           | INTEGER      | FOREIGN KEY |
-| yearOfStudy         | INTEGER      | NOT NULL    |
-| registrationTypeID  | VARCHAR(255) | FOREIGN KEY |
+| Field               | Type    | Constraints |
+| ------------------- | ------- | ----------- |
+| studentID           | INTEGER | FOREIGN KEY |
+| yearOfStudy         | INTEGER | NOT NULL    |
+| registrationTypeID  | INTEGER | FOREIGN KEY |
 
 StudentContact
 --------------
