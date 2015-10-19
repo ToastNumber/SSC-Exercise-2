@@ -90,7 +90,7 @@
 		
 		<attribute>
 			<name>registrationTypeID</name>
-			<type>VARCHAR(255)</type>
+			<type>INTEGER</type>
 		</attribute>
 	</table>
 	
