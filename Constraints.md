@@ -10,17 +10,17 @@ Student
 -------
 | Field       | Type          | Constraints |
 | ----------- | ------------- | ----------- |
-| studentID   | INTEGER       | PRIMARY KEY |
-| titleID     | INTEGER       | FOREIGN KEY |
-| foreName    | VARCHAR(255)  | NOT NULL    |
-| familyName  | VARCHAR(255)  | NOT NULL    |
-| dateOfBirth | DATE          | NOT NULL    |
+| studentID   | INTEGER       | PRIMARY KEY CHECK (studentID > 0) |
+| titleID     | INTEGER       | FOREIGN KEY 					  |
+| foreName    | VARCHAR(255)  | NOT NULL    					  |
+| familyName  | VARCHAR(255)  | NOT NULL    					  |
+| dateOfBirth | DATE          | NOT NULL    					  |
 
 Lecturer
 --------
 | Field       | Type          | Constraints |
 | ----------- | ------------- | ----------- |
-| lecturerID  | INTEGER       | PRIMARY KEY |
+| lecturerID  | INTEGER       | PRIMARY KEY CHECK (lecturerID > 0) |
 | titleID     | INTEGER       | FOREIGN KEY |
 | foreName    | VARCHAR(255)  | NOT NULL    |
 | familyName  | VARCHAR(255)  | NOT NULL    |
@@ -71,14 +71,14 @@ Titles
 ------
 | Field        | Type         | Constraints     |
 | ------------ | ------------ | --------------- |
-| titleID      | INTEGER      | PRIMARY KEY     |
+| titleID      | INTEGER      | PRIMARY KEY     CHECK (titleID > 0) |
 | titleString  | VARCHAR(255) | NOT NULL UNIQUE |
 
 RegistrationType
 ----------------
 | Field              | Type         | Constraints     |
 | ------------------ | ------------ | --------------- |
-| registrationTypeID | INTEGER      | PRIMARY KEY     |
+| registrationTypeID | INTEGER      | PRIMARY KEY CHECK (titleID > 0) |
 | description        | VARCHAR(255) | NOT NULL UNIQUE |
 
 

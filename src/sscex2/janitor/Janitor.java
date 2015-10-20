@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,12 +19,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class Janitor {
-	private static final String USER = "kjm409";
-	private static final String PASS = "briswosw";
-	private static final String DB = USER;
-	private static final String URL = "jdbc:postgresql://dbteach2.cs.bham.ac.uk/" + DB;
+import sscex2.util.Util;
 
+public class Janitor {
 	private static final String SCHEMA_PATH = "resources/Tables.xml";
 
 	/**
@@ -326,19 +322,22 @@ public class Janitor {
 	public static void main(String[] args) {
 		System.out.println("Waking up Janitor ...\n");
 
+		Connection conn = null;
+		
 		// Load the driver
 		try {
-			Class.forName("org.postgresql.Driver");
+			conn = Util.getConnection();
 		} catch (ClassNotFoundException e) {
 			System.err.println("Postgresql Driver not found. Exiting ...");
+			System.exit(1);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			System.exit(1);
 		}
 
 		// Setup tables
 		try {
-			Connection conn = DriverManager.getConnection(URL, USER, PASS);
-
-			System.out.printf("Wiping contents of database [%s] ...%n", DB);
+			System.out.printf("Wiping contents of database [%s] ...%n", Util.DB);
 			wipeContentsOfDB(conn);
 			System.out.println("Wiping successful.\n");
 
@@ -352,6 +351,14 @@ public class Janitor {
 
 		} catch (SQLException | ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				System.out.println("Closing database connection ...");
+				conn.close();
+				System.out.println("Connection closed.");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		System.out.println("End.");
