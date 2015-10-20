@@ -79,7 +79,6 @@ public class Enroller {
 			} catch (SQLException e) {
 			}
 		}
-
 	}
 
 	private static int getTitleID(String title, Connection conn) throws SQLException {

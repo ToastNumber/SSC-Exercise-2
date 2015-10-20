@@ -3,6 +3,7 @@ package sscex2.ui;
 import java.util.Scanner;
 
 import sscex2.util.Enroller;
+import sscex2.util.Reporter;
 
 @SuppressWarnings("resource")
 public class UI {
@@ -27,19 +28,13 @@ public class UI {
 
 			if (in.hasNextInt()) {
 				option = in.nextInt();
-
-				if (option < 1 || option > OPTIONS.length) {
-					System.out.println("Please enter a valid option number.");
-					error = true;
-				}
 			} else {
 				System.out.println("Please enter an integer.");
 				in.nextLine();
 				error = true;
 			}
-			
-			System.out.println();
-		} while (error || option < 1 || option > OPTIONS.length);
+
+		} while (error);
 
 		return option;
 	}
@@ -60,6 +55,7 @@ public class UI {
 			do {
 				error = false;
 
+				System.out.println();
 				System.out.println("|-o-o-o-Registering-a-Student-o-o-o-|");
 				System.out.print("Enter student ID: ");
 				if (in.hasNextInt()) {
@@ -92,13 +88,14 @@ public class UI {
 		} else if (option == 2) {
 			int studentID = -1;
 			int tutorID = -1;
-			
+
 			do {
 				error = false;
-				
+
+				System.out.println();
 				System.out.println("|-o-o-o-Assigning-a-Tutor-to-a-Student-o-o-o-|");
 				System.out.print("Enter student ID: ");
-				
+
 				if (in.hasNextInt()) {
 					studentID = in.nextInt();
 					in.nextLine();
@@ -109,7 +106,7 @@ public class UI {
 					System.out.println();
 					continue;
 				}
-				
+
 				System.out.print("Enter tutor ID: ");
 				if (in.hasNextInt()) {
 					tutorID = in.nextInt();
@@ -121,15 +118,43 @@ public class UI {
 					System.out.println();
 					continue;
 				}
-				
+
 				System.out.println();
 				Enroller.assignStudentToTutor(studentID, tutorID);
+				System.out.println();
+			} while (error);
+		} else if (option == 3) {
+			int studentID = -1;
+			
+			do {
+				error = false;
+
+				System.out.println();
+				System.out.println("|-o-o-o-Student-Report-o-o-o-|");
+				System.out.print("Enter student ID: ");
+
+				if (in.hasNextInt()) {
+					studentID = in.nextInt();
+					in.nextLine();
+				} else {
+					error = true;
+					System.out.println("Please enter an integer.");
+					in.nextLine();
+					System.out.println();
+					continue;
+				}
+
+				System.out.println();
+				String report = Reporter.produceReportForStudent(studentID);
+				System.out.println(report);
 				System.out.println();
 			} while (error);
 		} else if (option == OPTIONS.length) {
 			return true;
 		} else {
-			throw new IllegalArgumentException(option + " not a valid option");
+			System.out.println(option + " not a valid option");
+			System.out.println();
+			return false;
 		}
 
 		return false;

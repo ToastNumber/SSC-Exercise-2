@@ -14,7 +14,25 @@ public class Util {
 		// Load the driver
 		Class.forName("org.postgresql.Driver");
 		Connection conn = DriverManager.getConnection(URL, USER, PASS);
-		
+
 		return conn;
+	}
+
+	/**
+	 * @param dob
+	 * @return yyyy-mm-dd in the form dd/mm/yyyy
+	 */
+	public static String formatDOB(String dob) {
+		int index = dob.indexOf("-");
+		String year = dob.substring(0, index);
+		dob = dob.substring(index + 1);
+		
+		index = dob.indexOf("-");
+		String month = dob.substring(0, index);
+		dob = dob.substring(index + 1);
+		
+		String day = dob;
+
+		return String.format("%s/%s/%s", day, month, year);
 	}
 }
