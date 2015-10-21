@@ -7,7 +7,8 @@ import sscex2.util.Reporter;
 
 @SuppressWarnings("resource")
 public class UI {
-	private static final String[] OPTIONS = { "Register a new student", "Assign a tutor to a student", "Produce a student report", "Quit" };
+	private static final String[] OPTIONS = { "Register a new student", "Assign a tutor to a student", "Produce a student report", 
+		"Produce a lecturer report", "Quit" };
 
 	private static int getMenuChoice() {
 		int option = -1;
@@ -121,7 +122,6 @@ public class UI {
 
 				System.out.println();
 				Enroller.assignStudentToTutor(studentID, tutorID);
-				System.out.println();
 			} while (error);
 		} else if (option == 3) {
 			int studentID = -1;
@@ -146,6 +146,32 @@ public class UI {
 
 				System.out.println();
 				String report = Reporter.produceReportForStudent(studentID);
+				System.out.println(report);
+				System.out.println();
+			} while (error);
+		} else if (option == 4) {
+			int lecturerID = -1;
+			
+			do {
+				error = false;
+
+				System.out.println();
+				System.out.println("|-o-o-o-Lecturer-Report-o-o-o-|");
+				System.out.print("Enter lecturer ID: ");
+
+				if (in.hasNextInt()) {
+					lecturerID = in.nextInt();
+					in.nextLine();
+				} else {
+					error = true;
+					System.out.println("Please enter an integer.");
+					in.nextLine();
+					System.out.println();
+					continue;
+				}
+
+				System.out.println();
+				String report = Reporter.produceReportForLecturer(lecturerID);
 				System.out.println(report);
 				System.out.println();
 			} while (error);
