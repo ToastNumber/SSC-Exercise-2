@@ -8,8 +8,8 @@ You can find the constraints in the file [`Constraints.md`](Constraints.md).
 
 Part 2: Creating and populating the Data Base
 ---------------------------------------------
-The `Janitor` class uses the information in the `Tables` XML file to generate a clean database and then populate this with test data.
+The `Janitor` class uses the information in the `Tables` XML file to generate a clean database. The `RandomDataProvider` class provides methods for getting random names, post codes, etc. The `Janitor` class uses `RandomDataProvider` to populate the database with random data.
 
 Part 3: An interface using JDBC
 -------------------------------
-The code can be found in the `src` folder.
+The `UI` class provides a command line interface for the operations specified in the exercise.

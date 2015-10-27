@@ -7,8 +7,13 @@ import sscex2.util.Reporter;
 
 @SuppressWarnings("resource")
 public class UI {
-	private static final String[] OPTIONS = { "Register a new student", "Assign a tutor to a student", "Produce a student report", "Quit" };
+	private static final String[] OPTIONS = { "Register a new student", "Assign a tutor to a student", "Produce a student report", 
+		"Produce a lecturer report", "Quit" };
 
+	/**
+	 * Displays the menu and gets the user's choice.
+	 * @return gets the no. of the menu choice entered by the user.
+	 */
 	private static int getMenuChoice() {
 		int option = -1;
 		boolean error = false;
@@ -40,9 +45,9 @@ public class UI {
 	}
 
 	/**
-	 * 
-	 * @param option
-	 * @return true if the program should quit
+	 * Performs the operation specified by the menu option number.
+	 * @param option the number of the menu choice.
+	 * @return true if the program should quit; false otherwise
 	 */
 	private static boolean handleMenuOption(int option) {
 		Scanner in = new Scanner(System.in);
@@ -50,8 +55,11 @@ public class UI {
 
 		if (option == 1) {
 			int studentID = -1;
+			int yearOfStudy;
 			String title = "", foreName = "", familyName = "", dateOfBirth = "";
-
+			String registrationType = "", emailAddress = "", postalAddress = "";
+			String nokName = "", nokEmail = "", nokAddress = "";
+			
 			do {
 				error = false;
 
@@ -68,7 +76,7 @@ public class UI {
 					System.out.println();
 					continue;
 				}
-
+				
 				System.out.print("Enter title (e.g. Mr, Miss): ");
 				title = in.nextLine();
 
@@ -81,8 +89,39 @@ public class UI {
 				System.out.print("Enter DOB (yyyy-mm-dd): ");
 				dateOfBirth = in.nextLine();
 
+				System.out.print("Enter year of study: ");
+				if (in.hasNextInt()) {
+					yearOfStudy = in.nextInt();
+					in.nextLine();
+				} else {
+					error = true;
+					System.out.println("Please enter an integer.");
+					in.nextLine();
+					System.out.println();
+					continue;
+				}
+				
+				System.out.print("Enter registration type: ");
+				registrationType = in.nextLine();
+
+				System.out.print("Enter email address: ");
+				emailAddress = in.nextLine();
+				
+				System.out.print("Enter postal address: ");
+				postalAddress = in.nextLine();
+				
+				System.out.print("Enter name of next of kin: ");
+				nokName = in.nextLine();
+				
+				System.out.print("Enter email of next of kin: ");
+				nokEmail = in.nextLine();
+				
+				System.out.print("Enter address of next of kin: ");
+				nokAddress = in.nextLine();
+
 				System.out.println();
-				Enroller.enrolStudent(studentID, title, foreName, familyName, dateOfBirth);
+				Enroller.enrolStudent(studentID, title, foreName, familyName, dateOfBirth, yearOfStudy,
+						registrationType, emailAddress, postalAddress, nokName, nokEmail, nokAddress);
 				System.out.println();
 			} while (error);
 		} else if (option == 2) {
@@ -121,7 +160,6 @@ public class UI {
 
 				System.out.println();
 				Enroller.assignStudentToTutor(studentID, tutorID);
-				System.out.println();
 			} while (error);
 		} else if (option == 3) {
 			int studentID = -1;
@@ -146,6 +184,32 @@ public class UI {
 
 				System.out.println();
 				String report = Reporter.produceReportForStudent(studentID);
+				System.out.println(report);
+				System.out.println();
+			} while (error);
+		} else if (option == 4) {
+			int lecturerID = -1;
+			
+			do {
+				error = false;
+
+				System.out.println();
+				System.out.println("|-o-o-o-Lecturer-Report-o-o-o-|");
+				System.out.print("Enter lecturer ID: ");
+
+				if (in.hasNextInt()) {
+					lecturerID = in.nextInt();
+					in.nextLine();
+				} else {
+					error = true;
+					System.out.println("Please enter an integer.");
+					in.nextLine();
+					System.out.println();
+					continue;
+				}
+
+				System.out.println();
+				String report = Reporter.produceReportForLecturer(lecturerID);
 				System.out.println(report);
 				System.out.println();
 			} while (error);

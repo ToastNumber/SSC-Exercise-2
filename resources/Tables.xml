@@ -10,6 +10,7 @@
 		<attribute>
 			<name>studentID</name>
 			<type>INTEGER</type>
+			<constraint> CHECK (studentID >= 0)</constraint>
 		</attribute>
 		
 		<attribute>
@@ -46,6 +47,7 @@
 		<attribute>
 			<name>lecturerID</name>
 			<type>INTEGER</type>
+			<constraint> CHECK (lecturerID >= 0)</constraint>
 		</attribute>
 		
 		<attribute>
@@ -86,6 +88,7 @@
 			<name>yearOfStudy</name>
 			<type>INTEGER</type>
 			<constraint>NOT NULL</constraint>
+			<constraint>CHECK (yearOfStudy >= 1)</constraint>
 		</attribute>
 		
 		<attribute>
@@ -110,6 +113,7 @@
 			<type>VARCHAR(255)</type>
 			<constraint>NOT NULL</constraint>
 			<constraint>UNIQUE</constraint>
+			<constraint>CHECK (emailAddress LIKE '_%@%' AND emailAddress NOT LIKE '% %')</constraint>
 		</attribute>
 		
 		<attribute>
@@ -141,6 +145,7 @@
 			<name>eMailAddress</name>
 			<type>VARCHAR(255)</type>
 			<constraint>NOT NULL</constraint>
+			<constraint>CHECK (emailAddress LIKE '_%@%' AND emailAddress NOT LIKE '% %')</constraint>
 		</attribute>
 		
 		<attribute>
@@ -172,6 +177,7 @@
 			<name>eMailAddress</name>
 			<type>VARCHAR(255)</type>
 			<constraint>NOT NULL</constraint>
+			<constraint>CHECK (emailAddress LIKE '_%@%' AND emailAddress NOT LIKE '% %')</constraint>
 		</attribute>
 	</table>
 	
@@ -203,6 +209,7 @@
 		<attribute>
 			<name>titleID</name>
 			<type>INTEGER</type>
+			<constraint> CHECK (titleID >= 0)</constraint>
 		</attribute>
 		
 		<attribute>
@@ -219,6 +226,7 @@
 		<attribute>
 			<name>registrationTypeID</name>
 			<type>INTEGER</type>
+			<constraint> CHECK (registrationTypeID >= 0)</constraint>
 		</attribute>
 		
 		<attribute>
