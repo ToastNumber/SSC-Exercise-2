@@ -78,7 +78,7 @@
 			<field>registrationTypeID</field>
 			<ref>RegistrationType (registrationTypeID)</ref>
 		</foreignkey>
-	
+		
 		<attribute>
 			<name>studentID</name>
 			<type>INTEGER</type>
@@ -129,7 +129,6 @@
 			<ref>Student (studentID)</ref>
 		</foreignkey>
 	
-	
 		<attribute>
 			<name>studentID</name>
 			<type>INTEGER</type>
@@ -145,6 +144,7 @@
 			<name>eMailAddress</name>
 			<type>VARCHAR(255)</type>
 			<constraint>NOT NULL</constraint>
+			<constraint>UNIQUE</constraint>
 			<constraint>CHECK (emailAddress LIKE '_%@%' AND emailAddress NOT LIKE '% %')</constraint>
 		</attribute>
 		
@@ -177,6 +177,7 @@
 			<name>eMailAddress</name>
 			<type>VARCHAR(255)</type>
 			<constraint>NOT NULL</constraint>
+			<constraint>UNIQUE</constraint>
 			<constraint>CHECK (emailAddress LIKE '_%@%' AND emailAddress NOT LIKE '% %')</constraint>
 		</attribute>
 	</table>
@@ -209,7 +210,7 @@
 		<attribute>
 			<name>titleID</name>
 			<type>INTEGER</type>
-			<constraint> CHECK (titleID >= 0)</constraint>
+			<constraint>CHECK (titleID >= 0)</constraint>
 		</attribute>
 		
 		<attribute>
@@ -226,7 +227,7 @@
 		<attribute>
 			<name>registrationTypeID</name>
 			<type>INTEGER</type>
-			<constraint> CHECK (registrationTypeID >= 0)</constraint>
+			<constraint>CHECK (registrationTypeID >= 0)</constraint>
 		</attribute>
 		
 		<attribute>
