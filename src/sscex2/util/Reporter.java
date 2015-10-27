@@ -159,7 +159,7 @@ public class Reporter {
 				return "No lecturer found with lecturerID = " + lecturerID;
 			} else {
 				do {
-					result += String.format("Lecturer name: %s %s %s", 
+					result += String.format("Lecturer name: %s %s %s%n", 
 							rs.getString("titleString"), rs.getString("foreName"), rs.getString("familyName"));
 				} while (rs.next());
 			}
@@ -178,22 +178,24 @@ public class Reporter {
 
 			if (!rs.next()) {
 				return "No tutees found.";
+			} else {
+				result += String.format("--List of Tutees--");
+				do {
+					int studentID = rs.getInt("studentID");
+					int yearOfStudy = rs.getInt("yearOfStudy");
+	
+					if (yearOfStudy > currentYear) {
+						result += "\n";
+	
+						result += String.format("---Year %d---%n", yearOfStudy);
+						currentYear = yearOfStudy;
+					}
+					
+					result += produceReportForStudent(studentID, false) + "\n";
+				} while (rs.next());
+	
+				return result;
 			}
-			do {
-				int studentID = rs.getInt("studentID");
-				int yearOfStudy = rs.getInt("yearOfStudy");
-
-				if (yearOfStudy > currentYear) {
-					result += "\n";
-
-					result += String.format("---Year %d---%n", yearOfStudy);
-					currentYear = yearOfStudy;
-				}
-				
-				result += produceReportForStudent(studentID, false) + "\n";
-			} while (rs.next());
-
-			return result;
 		} catch (ClassNotFoundException e) {
 			System.out.println("Postgresql driver not found.");
 		} catch (SQLException e) {
