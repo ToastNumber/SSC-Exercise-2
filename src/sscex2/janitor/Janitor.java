@@ -70,7 +70,6 @@ public class Janitor {
 			ParserConfigurationException, SAXException, IOException {
 		System.out.println("Setting up tables ...");
 		
-		
 		File fXmlFile = new File(srcPath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

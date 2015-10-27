@@ -9,63 +9,30 @@ import java.sql.SQLException;
 public class Enroller {
 
 	public static void enrolStudent(int studentID, String title, String foreName, String familyName,
-			String dateOfBirth, int yearOfStudy, String registrationType, String emailAddress,
-			String postalAddress, String nokName, String nokEmail, String nokAddress) {
+			String dateOfBirth) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
+
 		try {
 			System.out.println("Attempting to register student ...");
 			conn = Util.getConnection();
-			conn.setAutoCommit(false);
 			stmt = conn.prepareStatement("INSERT INTO Student VALUES (?, ?, ?, ?, ?);");
 
 			int titleID = getTitleID(title, conn);
 			if (titleID < 0) {
 				System.out.println("Title must be one of Ms, Miss, Mrs, Mr, Dr, Prof.");
 				return;
+			} else {
+				stmt.setInt(1, studentID);
+				stmt.setInt(2, titleID);
+				stmt.setString(3, foreName);
+				stmt.setString(4, familyName);
+				stmt.setDate(5, Date.valueOf(dateOfBirth));
+				stmt.executeUpdate();
+				stmt.close();
+
+				System.out.println("Student has been added to database.");
 			}
-
-			int registrationTypeID = getRegistrationTypeID(registrationType, conn);
-			if (registrationTypeID < 0) {
-				System.out.println("Registration type must be one of Normal, Repeat, External");
-				return;
-			}
-
-			stmt.setInt(1, studentID);
-			stmt.setInt(2, titleID);
-			stmt.setString(3, foreName);
-			stmt.setString(4, familyName);
-			stmt.setDate(5, Date.valueOf(dateOfBirth));
-			stmt.executeUpdate();
-			stmt.close();
-
-			stmt = conn.prepareStatement("INSERT INTO StudentRegistration VALUES (?, ?, ?);");
-			stmt.setInt(1, studentID);
-			stmt.setInt(2, yearOfStudy);
-			stmt.setInt(3, registrationTypeID);
-			stmt.executeUpdate();
-			stmt.close();
-
-			stmt = conn.prepareStatement("INSERT INTO StudentContact VALUES (?, ?, ?);");
-			stmt.setInt(1, studentID);
-			stmt.setString(2, emailAddress);
-			stmt.setString(3, postalAddress);
-			stmt.executeUpdate();
-			stmt.close();
-
-			stmt = conn.prepareStatement("INSERT INTO NextOfKinContact VALUES (?, ?, ?, ?);");
-			stmt.setInt(1, studentID);
-			stmt.setString(2, nokName);
-			stmt.setString(3, nokEmail);
-			stmt.setString(4, nokAddress);
-			stmt.executeUpdate();
-			stmt.close();
-
-			conn.commit();
-			conn.setAutoCommit(true);
-			System.out.println("Student has been added to database.");
-
-			stmt.close();
 		} catch (ClassNotFoundException e) {
 			System.out.println("Postgresql driver not found.");
 		} catch (SQLException e) {
@@ -78,7 +45,7 @@ public class Enroller {
 			} catch (SQLException e1) {
 			}
 		} catch (IllegalArgumentException e) {
-			System.out.println("Date of birth must be of format yyyy-mm-dd.");
+			System.out.println("Date of birth must be a valid date in the format yyyy-mm-dd.");
 		} finally {
 			try {
 				stmt.close();
@@ -131,16 +98,4 @@ public class Enroller {
 		return -1;
 	}
 
-	private static int getRegistrationTypeID(String description, Connection conn) throws SQLException {
-		PreparedStatement stmt = conn
-				.prepareStatement("SELECT registrationTypeID FROM RegistrationType WHERE description = ?;");
-		stmt.setString(1, description);
-		ResultSet rs = stmt.executeQuery();
-
-		while (rs.next()) {
-			return Integer.valueOf(rs.getString("registrationTypeID"));
-		}
-
-		return -1;
-	}
 }
