@@ -183,6 +183,8 @@
 	</table>
 	
 	<table name="Tutor">
+		<primarykey>studentID, lecturerID</primarykey>
+		
 		<foreignkey>
 			<field>studentID</field>
 			<ref>Student (studentID)</ref>
