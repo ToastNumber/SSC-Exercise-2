@@ -4,7 +4,7 @@ This repository contains the code for the `Software Systems Components A: Exerci
 
 Part 1: Data Definition
 -----------------------
-You can find the constraints in the file [`Constraints.md`](Constraints.md).
+You can find the constraints in the file [`Constraints.md`](Constraints.md). 
 
 Part 2: Creating and populating the Data Base
 ---------------------------------------------
