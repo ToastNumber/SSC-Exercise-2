@@ -114,7 +114,7 @@ public class UI {
 					continue;
 				}
 
-				System.out.print("Enter tutor ID: ");
+				System.out.print("Enter lecturer ID: ");
 				if (in.hasNextInt()) {
 					tutorID = in.nextInt();
 					in.nextLine();
