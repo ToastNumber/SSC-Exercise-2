@@ -63,6 +63,8 @@ Tutor
 | studentID  | INTEGER | FOREIGN KEY   | |
 | lecturerID | INTEGER | FOREIGN KEY   | |
 
+The combination of `studentID` and `lecturerID` will be the primary key.
+
 Titles
 ------
 | Field        | Type         | Constraints     | Validation |

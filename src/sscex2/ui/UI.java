@@ -128,6 +128,7 @@ public class UI {
 
 				System.out.println();
 				Enroller.assignStudentToTutor(studentID, tutorID);
+				System.out.println();
 			} while (error);
 		} else if (option == 3) {
 			int studentID = -1;
@@ -177,8 +178,7 @@ public class UI {
 				}
 
 				System.out.println();
-				String report = Reporter.produceReportForLecturer(lecturerID);
-				System.out.println(report);
+				System.out.println(Reporter.produceReportForLecturer(lecturerID));
 				System.out.println();
 			} while (error);
 		} else if (option == OPTIONS.length) {

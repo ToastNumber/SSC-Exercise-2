@@ -36,6 +36,18 @@ public class Reporter {
 			String emergencyContact = "";
 			String personalTutor = "";
 
+			// Check if the student exists
+			stmt = conn.prepareStatement("SELECT * FROM Student WHERE studentID = ?;");
+			stmt.setInt(1, studentID);
+			rs = stmt.executeQuery();
+			
+			if (!rs.next()) {
+				return "No student found with studentID = " + studentID;
+			} 
+			
+			rs.close();
+			stmt.close();
+			
 			// Get information about actual student
 			stmt = conn
 					.prepareStatement(""
@@ -51,7 +63,7 @@ public class Reporter {
 			rs = stmt.executeQuery();
 
 			if (!rs.next()) {
-				return "No student found with studentID = " + studentID;
+				return String.format("Not enough information about student [%d] to generate report", studentID);
 			} else {
 				do {
 					title = rs.getString("titleString");
@@ -177,16 +189,14 @@ public class Reporter {
 			int currentYear = -1;
 
 			if (!rs.next()) {
-				return "No tutees found.";
+				return result + "No tutees found.";
 			} else {
-				result += String.format("--List of Tutees--");
+				result += String.format("--List of Tutees--%n");
 				do {
 					int studentID = rs.getInt("studentID");
 					int yearOfStudy = rs.getInt("yearOfStudy");
 	
 					if (yearOfStudy > currentYear) {
-						result += "\n";
-	
 						result += String.format("---Year %d---%n", yearOfStudy);
 						currentYear = yearOfStudy;
 					}
@@ -194,7 +204,8 @@ public class Reporter {
 					result += produceReportForStudent(studentID, false) + "\n";
 				} while (rs.next());
 	
-				return result;
+				// Remove last new line character
+				return result.substring(0, result.length() - 2);
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println("Postgresql driver not found.");
