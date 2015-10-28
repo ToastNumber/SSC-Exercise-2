@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="run" name="SSC-Exercise-2 ANT - Compile and Run">
+	<property name="src.dir" location="src"/>
+	<property name="build.dir" location="bin"/>
+
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<target name="makedir">
+		<mkdir dir="${build.dir}"/>
+	</target>
+
+	<target name="compile" depends="clean,makedir">
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}">
+			<classpath>
+				<pathelement path="lib/postgresql-9.4-1204.jdbc4.jar"/>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<java classname="sscex2.ui.UI">
+			<classpath path="${build.dir}"/>
+			<arg value="TEST"/>
+		</java>
+	</target>
+</project>
