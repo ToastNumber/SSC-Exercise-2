@@ -298,7 +298,8 @@ public class Janitor {
 			
 			stmt = conn.prepareStatement("INSERT INTO Tutor VALUES (?, ?);");
 			stmt.setInt(1, sid);
-			stmt.setInt(2, i < 10 ? 10000 : 10001 + i/25);
+			// To give tutor 10000 6 tutees
+			stmt.setInt(2, i < 6 ? 10000 : 10001 + i/25);
 			stmt.executeUpdate();
 			stmt.close();
 		}
@@ -329,7 +330,13 @@ public class Janitor {
 			wipeContentsOfDB(conn);
 			setupTables(conn, SCHEMA_PATH);
 			populateTables(conn);
-		} catch (SQLException | ParserConfigurationException | SAXException | IOException e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
