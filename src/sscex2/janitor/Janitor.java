@@ -293,24 +293,16 @@ public class Janitor {
 		}
 		System.out.println("Table [NextOfKinContact] populated.");
 
-		// Populate table [Tutor]
-		System.out.println("Populating table [Tutor] ...");
-		final String[] tutorInserts = {
-			"INSERT INTO Tutor VALUES (1000000, 10001);",
-			"INSERT INTO Tutor VALUES (1000006, 10001);",
-			"INSERT INTO Tutor VALUES (1000020, 10001);",
-			"INSERT INTO Tutor VALUES (1000089, 10001);",
-			"INSERT INTO Tutor VALUES (1000090, 10001);",
-			"INSERT INTO Tutor VALUES (1000013, 10004);",
-			"INSERT INTO Tutor VALUES (1000025, 10004);",
-			"INSERT INTO Tutor VALUES (1000045, 10004);",
-			"INSERT INTO Tutor VALUES (1000055, 10004);"
-		};
-		for (int i = 0; i < tutorInserts.length; ++i) {
-			stmt = conn.prepareStatement(tutorInserts[i]);
+		for (int i = 0; i < forenames.length * familyNames.length; ++i) {
+			int sid = studentIDStart + i;
+			
+			stmt = conn.prepareStatement("INSERT INTO Tutor VALUES (?, ?);");
+			stmt.setInt(1, sid);
+			stmt.setInt(2, i < 10 ? 10000 : 10001 + sid/25);
 			stmt.executeUpdate();
 			stmt.close();
 		}
+		
 		System.out.println("Table [NextOfKinContact] populated.");
 		
 		System.out.println("Tables are now populated.");
