@@ -298,7 +298,7 @@ public class Janitor {
 			
 			stmt = conn.prepareStatement("INSERT INTO Tutor VALUES (?, ?);");
 			stmt.setInt(1, sid);
-			stmt.setInt(2, i < 10 ? 10000 : 10001 + sid/25);
+			stmt.setInt(2, i < 10 ? 10000 : 10001 + i/25);
 			stmt.executeUpdate();
 			stmt.close();
 		}

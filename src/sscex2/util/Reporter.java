@@ -107,6 +107,7 @@ public class Reporter {
 				personalTutor += rs.getString("foreName") + " " + rs.getString("familyName") + ", ";
 				personalTutor += "Office: " + rs.getInt("office") + ", ";
 				personalTutor += rs.getString("eMailAddress");
+				personalTutor += "\n";
 			}
 			rs.close();
 			stmt.close();
@@ -121,7 +122,7 @@ public class Reporter {
 			result += String.format("Email: %s%n", email);
 			result += String.format("Postal Address: %s%n", postalAddress);
 			result += String.format("Emergency Contact: %s%n", emergencyContact);
-			if (flag) result += String.format("Personal Tutor: %s", personalTutor);
+			if (flag) result += String.format("Personal Tutor(s): %s", personalTutor);
 
 			return result;
 		} catch (ClassNotFoundException e) {
