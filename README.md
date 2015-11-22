@@ -1,4 +1,4 @@
-Software Systems Components A: Exercise 2 [![Build Status](https://magnum.travis-ci.com/ToastNumber/SSC-Exercise-2.svg?token=rUw2Rzx9qvYA1kcCppku&branch=master)](https://magnum.travis-ci.com/ToastNumber/SSC-Exercise-2)
+Software Systems Components A: Exercise 2 [![Build Status](https://travis-ci.org/ToastNumber/SSC-Exercise-2.svg)](https://travis-ci.org/ToastNumber/SSC-Exercise-2)
 =========================================
 This repository contains the code for the `Software Systems Components A: Exercise 2 - A Database Application for a University` assignment.
 
